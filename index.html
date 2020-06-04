@@ -1,0 +1,74 @@
+<!--
+Imitating the project "Historical-ranking-data-visualization-based-on-d3.js"
+Thanks for the original author and the project!
+@original author:        Jannchie
+@original project url:   https://github.com/Jannchie/Historical-ranking-data-visualization-based-on-d3.js
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="javascript/d3.v5.min.js"></script>
+    <script src="javascript/jquery-3.2.1.slim.min.js"></script>
+    <title>History Rank visual</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="javascript/bootstrap-select.js"></script>
+</head>
+
+<body>
+    <center>
+        <div>
+            <select class="selectpicker" title="请选择省份" id="province" onchange="fprovince()">
+                <option>北京市</option>
+                <option>上海市</option>
+                <option>天津市</option>
+                <option>重庆市</option>
+                <option>黑龙江省</option>
+                <option>吉林省</option>
+                <option>辽宁省</option>
+                <option>内蒙古自治区</option>
+                <option>山西省</option>
+                <option>河北省</option>
+                <option>山东省</option>
+                <option>河南省</option>
+                <option>安徽省</option>
+                <option>江苏省</option>
+                <option>浙江省</option>
+                <option>福建省</option>
+                <option>广东省</option>
+                <option>广西壮族自治区</option>
+                <option>云南省</option>
+                <option>四川省</option>
+                <option>湖北省</option>
+                <option>湖南省</option>
+                <option>陕西省</option>
+                <option>甘肃省</option>
+                <option>江西省</option>
+                <option>青海省</option>
+                <option>宁夏回族自治区</option>
+                <option>西藏自治区</option>
+                <option>新疆维吾尔自治区</option>
+            </select>
+        </div>
+        <div>
+            <select class="selectpicker" title="请选择类别" id="type" onchange="ftype()">
+                <option>森林</option>
+                <option>草原</option>
+                <option>湿地</option>
+                <option>耕地</option>
+                <option>水体</option>
+                <option>裸地或稀疏植被</option>
+            </select>
+        </div>
+        <script src="javascript/config.js"></script>
+        <script src="javascript/visual.js"></script>
+        <link rel="stylesheet" href="css/stylesheet.css">
+    </center>
+</body>
+
+</html>
