@@ -33,6 +33,32 @@
     font-weight: 800;
 }
 
+.forest{
+    fill: rgb(38, 115, 0);
+}
+.grassland{
+    fill: rgb(76, 230, 0);
+}
+.swamp{
+    fill: rgb(76, 230, 0);
+}
+.city{
+    fill: rgb(197, 0, 255);
+}
+.ice{
+    fill: rgb(0, 255, 197);
+}
+.water{
+    fill: rgb(0, 92, 255);
+}
+.bareland{
+    fill: rgb(255, 170, 0);
+}
+.arableland{
+    fill: rgb(255, 128, 64);
+}
+
+
 /* MIKU色 */
 .Z {
     fill: #C0620B

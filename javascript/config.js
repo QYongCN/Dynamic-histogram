@@ -8,7 +8,8 @@ const config = {
         top:        50,
         bottom:     0
     },
-    ColorClass:     ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+    // ColorClass:     ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+    ColorClass: ["forest", "grassland", "swamp", "city", "ice", "water", "bareland", "arableland"],
     IntervalTime:   0.33333,
     XTicks:         5
 }

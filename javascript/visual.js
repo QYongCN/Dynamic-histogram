@@ -193,61 +193,226 @@ function draw(seq, svgwidth, svgheight) {
             .attr("class", function (d) {
                 return getColorClass(d);
             });
+        if (flag == 1){
+            barEnter.append("rect")
+                .attr("width", d => xScale(xValue(d)))
+                .attr("fill-opacity", 0)
+                // .attr("height", yScale.bandwidth())
+                .attr("height", 6)
+                .attr("y", 50)
+                .attr('rx',3)  //圆角
+                .attr('ry',3)  //圆角
+                .transition("a")
+                .attr('fill', function (d) {
+                    if (d.name == "耕地"){
+                        return "rgb(255, 128, 64)";
+                    }else if (d.name == "森林"){
+                        return "rgb(38, 115, 0)"
+                    }else if (d.name == "草原"){
+                        return "rgb(76, 230, 0)"
+                    }else if (d.name == "湿地"){
+                        return "rgb(76, 230, 0)"
+                    }else if (d.name == "城市和建筑"){
+                        return "rgb(197, 0, 255)"
+                    }
+                    else if (d.name == "冰雪"){
+                        return "rgb(0, 255, 197)"
+                    }else if (d.name == "裸地或稀疏植被")
+                    {
+                        return "rgb(255, 170, 0)"
+                    }
+                    else if (d.name == "水体"){
+                        return "rgb(0, 92, 255)"
+                    }
 
-        barEnter.append("rect")
-            .attr("width", d => xScale(xValue(d)))
-            .attr("fill-opacity", 0)
-            // .attr("height", yScale.bandwidth())
-            .attr("height", 6)
-            .attr("y", 50)
-            .attr('rx',3)  //圆角
-            .attr('ry',3)  //圆角
-            .transition("a")
-            .attr("class", d => getColorClass(d))
-            .delay(500 * intervalTime)
-            .duration(2490 * intervalTime)
-            .attr("y", 0)
-            .attr("width", d => xScale(xValue(d)))
-            .attr("fill-opacity", 1);
+                })
+                .delay(500 * intervalTime)
+                .duration(2490 * intervalTime)
+                .attr("y", 0)
+                .attr("width", d => xScale(xValue(d)))
+                .attr("fill-opacity", 1);
 
-        barEnter.append("text")
-            .attr("y", 0)
-            .attr("fill-opacity", 0)
-            .transition("2")
-            .delay(500 * intervalTime)
-            .duration(2490 * intervalTime)
-            .attr("fill-opacity", 1)
-            .attr("y", 0)
-            .attr("class", function (d) {
-                return "label " + getColorClass(d)
-            })
-            .attr("x", -5)
-            .attr("y", 10)
-            .attr("text-anchor", "end")
-            .text(d => d.name);
+            barEnter.append("text")
+                .attr("y", 0)
+                .attr("fill-opacity", 0)
+                .transition("2")
+                .delay(500 * intervalTime)
+                .duration(2490 * intervalTime)
+                .attr("fill-opacity", 1)
+                .attr("y", 0)
+                .attr("fill", function (d) {
+                    if (d.name == "城市和建筑"){
+                        return "rgb(197, 0, 255)"
+                    } else if (d.name == "水体"){
+                        return "rgb(0, 92, 255)"
+                    }else if (d.name == "草原"){
+                        return "rgb(76, 230, 0)"
+                    }else if (d.name == "耕地"){
+                        return "rgb(255, 128, 64)"
+                    }else if (d.name == "裸地或稀疏植被"){
+                        return "rgb(255, 170, 0)"
+                    }else if (d.name == "冰雪"){
+                        return "rgb(0, 255, 197)"
+                    }else if (d.name == "湿地"){
+                        return "rgb(76, 230, 0)"
+                    }else if (d.name == "森林"){
+                        return "rgb(38, 115, 0)"
+                    }
+                })
+                .attr("font-size", "8pt")
+                .attr("x", -5)
+                .attr("y", 10)
+                .attr("text-anchor", "end")
+                .text(d => d.name);
 
-        barEnter.append("text")
-            .attr("x", d => xScale(xValue(d)))
-            .attr("y", 10)
-            .attr("fill-opacity", 0)
-            .text(d => d.value)
-            .transition()
-            .delay(500 * intervalTime)
-            .duration(2490 * intervalTime)
-            .attr("fill-opacity", 1)
-            .attr("y", 0)
-            .attr("class", function (d) {
-                return "value " + getColorClass(d)
-            })
-            .tween("text", function (d) {
-                var self=this;                      // why?
-                var i = d3.interpolate(self.textContent, Number(d.value));
-                return function (t) {
-                    self.textContent = Math.round(i(t));
-                };
-            })
-            .attr("x", d => xScale(xValue(d)) + 10)
-            .attr("y", 10);
+            barEnter.append("text")
+                .attr("x", d => xScale(xValue(d)))
+                .attr("y", 10)
+                .attr("fill-opacity", 0)
+                .text(d => d.value)
+                .transition()
+                .delay(500 * intervalTime)
+                .duration(2490 * intervalTime)
+                .attr("fill-opacity", 1)
+                .attr("y", 0)
+                .attr("class", function (d) {
+                    if (d.name == "森林"){
+                        return "value " + "forest"
+                    }else if (d.name == "草原"){
+                        return "value " + "grassland"
+                    }else if (d.name == "湿地"){
+                        return "value " + "swamp"
+                    }else if (d.name == "城市和建筑"){
+                        return "value " + "city"
+                    }else if (d.name == "冰雪"){
+                        return "value " + "ice"
+                    }else if (d.name == "裸地或稀疏植被"){
+                        return "value " + "bareland"
+                    }else if (d.name == "耕地"){
+                        return "value " + "arableland"
+                    }else if (d.name == "水体"){
+                        return "value " + "water"
+                    }
+                })
+                .tween("text", function (d) {
+                    var self=this;                      // why?
+                    var i = d3.interpolate(self.textContent, Number(d.value));
+                    return function (t) {
+                        self.textContent = Math.round(i(t));
+                    };
+                })
+                .attr("x", d => xScale(xValue(d)) + 10)
+                .attr("y", 10);
+
+        }else if (flag == -1){
+            barEnter.append("rect")
+                .attr("width", d => xScale(xValue(d)))
+                .attr("fill-opacity", 0)
+                // .attr("height", yScale.bandwidth())
+                .attr("height", 6)
+                .attr("y", 50)
+                .attr('rx',3)  //圆角
+                .attr('ry',3)  //圆角
+                .transition("a")
+                // .attr("class", d => getColorClass(d))
+                .attr("fill", function (d) {
+                    if (showtype == "城市和建筑"){
+                        return "rgb(197, 0, 255)"
+                    } else if (showtype == "水体"){
+                        return "rgb(0, 92, 255)"
+                    }else if (showtype == "草原"){
+                        return "rgb(76, 230, 0)"
+                    }else if (showtype == "耕地"){
+                        return "rgb(255, 128, 64)"
+                    }else if (showtype == "裸地或稀疏植被"){
+                        return "rgb(255, 170, 0)"
+                    }else if (showtype == "冰雪"){
+                        return "rgb(0, 255, 197)"
+                    }else if (showtype == "湿地"){
+                        return "rgb(76, 230, 0)"
+                    }else if (showtype == "森林"){
+                        return "rgb(38, 115, 0)"
+                    }
+                })
+                .delay(500 * intervalTime)
+                .duration(2490 * intervalTime)
+                .attr("y", 0)
+                .attr("width", d => xScale(xValue(d)))
+                .attr("fill-opacity", 1);
+
+            barEnter.append("text")
+                .attr("y", 0)
+                .attr("fill-opacity", 0)
+                .transition("2")
+                .delay(500 * intervalTime)
+                .duration(2490 * intervalTime)
+                .attr("fill-opacity", 1)
+                .attr("y", 0)
+                .attr("fill", function (d) {
+                    if (showtype == "城市和建筑"){
+                        return "rgb(197, 0, 255)"
+                    } else if (showtype == "水体"){
+                        return "rgb(0, 92, 255)"
+                    }else if (showtype == "草原"){
+                        return "rgb(76, 230, 0)"
+                    }else if (showtype == "耕地"){
+                        return "rgb(255, 128, 64)"
+                    }else if (showtype == "裸地或稀疏植被"){
+                        return "rgb(255, 170, 0)"
+                    }else if (showtype == "冰雪"){
+                        return "rgb(0, 255, 197)"
+                    }else if (showtype == "湿地"){
+                        return "rgb(76, 230, 0)"
+                    }else if (showtype == "森林"){
+                        return "rgb(38, 115, 0)"
+                    }
+                })
+                .attr("font-size", "8pt")
+                .attr("x", -5)
+                .attr("y", 10)
+                .attr("text-anchor", "end")
+                .text(d => d.name);
+
+            barEnter.append("text")
+                .attr("x", d => xScale(xValue(d)))
+                .attr("y", 10)
+                .attr("fill-opacity", 0)
+                .text(d => d.value)
+                .transition()
+                .delay(500 * intervalTime)
+                .duration(2490 * intervalTime)
+                .attr("fill-opacity", 1)
+                .attr("y", 0)
+                .attr("class", function (d) {
+                    if (showtype == "森林"){
+                        return "value " + "forest"
+                    }else if (showtype == "草原"){
+                        return "value " + "grassland"
+                    }else if (showtype == "湿地"){
+                        return "value " + "swamp"
+                    }else if (showtype == "城市和建筑"){
+                        return "value " + "city"
+                    }else if (showtype == "冰雪"){
+                        return "value " + "ice"
+                    }else if (showtype == "裸地或稀疏植被"){
+                        return "value " + "bareland"
+                    }else if (showtype == "耕地"){
+                        return "value " + "arableland"
+                    }else if (showtype == "水体"){
+                        return "value " + "water"
+                    }
+                })
+                .tween("text", function (d) {
+                    var self=this;                      // why?
+                    var i = d3.interpolate(self.textContent, Number(d.value));
+                    return function (t) {
+                        self.textContent = Math.round(i(t));
+                    };
+                })
+                .attr("x", d => xScale(xValue(d)) + 10)
+                .attr("y", 10);
+
+        }
 
         // Update Items
         var barUpdate = bar.transition().duration(2990 * intervalTime).ease(d3.easeLinear);
